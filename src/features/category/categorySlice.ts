@@ -1,6 +1,7 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { Category, ListResponse } from 'models';
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Category } from 'models';
+import { ListResponse, PaginationParams } from './../../models/common';
 
 export interface CategoryState {
   loading: boolean;
@@ -18,12 +19,13 @@ const categorySlice = createSlice({
     fetchCategoryList(state) {
       state.loading = true;
     },
-    fetchCategorySuccess(state, action: PayloadAction<ListResponse<Category>>) {
+    fetchCategoryListSuccess(state, action: PayloadAction<ListResponse<Category>>) {
       state.list = action.payload.data;
+      // state.pagination = action.payload.pagination;
       state.loading = false;
       console.log(state.list);
     },
-    fetchCategoryFailed(state) {
+    fetchCategoryListFailed(state) {
       state.loading = false;
     },
   },

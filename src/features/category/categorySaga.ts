@@ -1,16 +1,15 @@
 import categoryApi from 'api/categoryApi';
+import { Category, ListResponse } from 'models';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { Category, ListParams, ListResponse } from 'models';
 import { categoryActions } from './categorySlice';
-import { PayloadAction } from '@reduxjs/toolkit';
 
 function* fetchCategoryList() {
   try {
     const response: ListResponse<Category> = yield call(categoryApi.getAll);
-    yield put(categoryActions.fetchCategorySuccess(response));
+    yield put(categoryActions.fetchCategoryListSuccess(response));
   } catch (error) {
     console.log('failed to fetch category:', error);
-    yield put(categoryActions.fetchCategoryFailed());
+    yield put(categoryActions.fetchCategoryListFailed());
   }
 }
 export default function* categorySaga() {

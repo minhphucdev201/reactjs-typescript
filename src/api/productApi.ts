@@ -7,7 +7,7 @@ const productApi = {
     // Transform _page to _start
     const newParams = { ...params };
     newParams._start =
-      !params._page || params._page <= 1 ? 0 : (params._page - 1) * (params._limit || 20);
+      !params._page || params._page <= 1 ? 0 : (params._page - 1) * (params._limit || 10);
     // Remove un-needed key
     delete newParams._page;
     // Fetch product list + count

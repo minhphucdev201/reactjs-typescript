@@ -86,7 +86,7 @@ export default function ProductTable({
                   <img src={product.picture.name} alt={product.name} width={200} height={200} />
                 </TableCell>
                 <TableCell width={600}>{product.desc}</TableCell>
-                <TableCell>{categoryMap[product.danhmuc]?.title}</TableCell>
+                <TableCell>{product.danhmuc.title}</TableCell>
                 <TableCell align="right">
                   <Button
                     className={classes.edit}

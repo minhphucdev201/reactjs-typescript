@@ -103,15 +103,15 @@ export default function ListPage() {
           filter={filter}
           categoryList={categoryList}
           onSearchChange={handleSearchChange}
-          // onChange={handleFilterChange}
+          onChange={handleFilterChange}
         />
       </Box>
       {/*Product Table*/}
       <ProductTable
         productList={productList}
+        categoryMap={categoryMap}
         onRemove={handleRemoveProduct}
         onEdit={handleEditProduct}
-        categoryMap={categoryMap}
       />
 
       {/*Pagination*/}

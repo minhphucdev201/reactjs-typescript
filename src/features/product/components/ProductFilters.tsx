@@ -1,4 +1,13 @@
-import { Box, FormControl, Grid, InputLabel, OutlinedInput } from '@material-ui/core';
+import {
+  Box,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+} from '@material-ui/core';
 import { Category, ListParams } from 'models';
 import { ChangeEvent } from 'react';
 
@@ -29,8 +38,8 @@ export default function ProductFilters({
     if (!onChange) return;
     const newFilter: ListParams = {
       ...filter,
+      danhmuc_eq: e.target.value || undefined,
       _page: 1,
-      category: e.target.value,
     };
     onChange(newFilter);
   };
@@ -55,16 +64,15 @@ export default function ProductFilters({
             <OutlinedInput id="searchByName" label="Search By Name" onChange={handleSearchChange} />
           </FormControl>
         </Grid>
-        {/* filter by category* /}
-        {/* <Grid item xs={12} md={6} lg={3}>
-          <FormControl variant="outlined" size="small">
+
+        <Grid item xs={12} md={6} lg={3}>
+          <FormControl variant="outlined" size="small" fullWidth>
             <InputLabel id="filterByCategory">Filter By Category</InputLabel>
             <Select
-              labelId="demo-simple-select-helper-label"
-              id="filterByCategory"
-              label="Filter By Category"
-              value={filter.category || ''}
+              labelId="filterByCategory"
+              value={filter.category}
               onChange={handleCategoryChange}
+              label="Filter By Category"
             >
               <MenuItem value="">
                 <em>All</em>
@@ -75,9 +83,8 @@ export default function ProductFilters({
                 </MenuItem>
               ))}
             </Select>
-            <FormHelperText>With label + helper text</FormHelperText>
           </FormControl>
-        </Grid> */}
+        </Grid>
 
         {/*  filter by sort  */}
         {/* <Grid item xs={12} md={6} lg={2}>
