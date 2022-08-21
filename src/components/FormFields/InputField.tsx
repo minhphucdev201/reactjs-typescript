@@ -10,7 +10,7 @@ export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 export function InputField({ name, control, label, ...inputProps }: InputFieldProps) {
   const {
-    field: { value, onChange, onBlur },
+    field: { value, onChange, onBlur, ref },
     fieldState: { error },
   } = useController({
     name,
@@ -24,7 +24,7 @@ export function InputField({ name, control, label, ...inputProps }: InputFieldPr
       value={value}
       label={label}
       variant="outlined"
-      // inputRef={ref}
+      inputRef={ref}
       onBlur={onBlur}
       onChange={onChange}
       helperText={error?.message}

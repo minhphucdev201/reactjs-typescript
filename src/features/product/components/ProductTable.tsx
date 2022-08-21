@@ -18,7 +18,7 @@ import {
 } from '@material-ui/core';
 import { Category, Product } from 'models';
 import { useState } from 'react';
-
+import NumberFormat from 'react-number-format';
 export interface ProductTableProps {
   productList: Product[];
   categoryMap: {
@@ -81,7 +81,14 @@ export default function ProductTable({
               <TableRow key={product.id}>
                 <TableCell width={100}>{product.id}</TableCell>
                 <TableCell width={200}>{product.name}</TableCell>
-                <TableCell>{product.price}</TableCell>
+                <TableCell>
+                  <NumberFormat
+                    value={product.price}
+                    displayType={'text'}
+                    thousandSeparator={true}
+                    suffix={'$'}
+                  />
+                </TableCell>
                 <TableCell>
                   <img src={product.picture.name} alt={product.name} width={200} height={200} />
                 </TableCell>

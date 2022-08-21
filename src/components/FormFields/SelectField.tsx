@@ -14,7 +14,7 @@ export interface SelectFieldProps {
   control: Control<any>;
   label?: string;
   disabled?: boolean;
-  options?: SelectOption[] | undefined;
+  options: SelectOption[];
 }
 
 export function SelectField({ name, control, label, disabled, options }: SelectFieldProps) {
@@ -38,19 +38,17 @@ export function SelectField({ name, control, label, disabled, options }: SelectF
       <InputLabel id={`${name}_label`}>{label}</InputLabel>
       <Select
         labelId={`${name}_label`}
-        value={value}
+        value={value || ''}
         onChange={onChange}
         onBlur={onBlur}
         label={label}
       >
-        {options &&
-          options.map((options) => (
-            <MenuItem key={options.value} value={options.value}>
-              {options.label}
-            </MenuItem>
-          ))}
+        {options.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
       </Select>
-
       <FormHelperText>{error?.message}</FormHelperText>
     </FormControl>
   );

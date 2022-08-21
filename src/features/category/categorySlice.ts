@@ -42,6 +42,13 @@ export const selectCategoryMap = createSelector(selectCategoryList, (list) =>
   }, {})
 );
 
+export const selectCategoryOptions = createSelector(selectCategoryList, (categoryList) =>
+  categoryList.map((cat) => ({
+    label: cat.title,
+    value: cat.id,
+  }))
+);
+
 //reducer
 const categoryReducer = categorySlice.reducer;
 export default categoryReducer;

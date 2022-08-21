@@ -88,6 +88,8 @@ export default function ProductFilters({
           </FormControl>
         </Grid>
 
+        {/* filterr by category */}
+
         <Grid item xs={12} md={6} lg={3}>
           <FormControl variant="outlined" size="small" fullWidth>
             <InputLabel id="filterByCategory">Lọc theo danh mục</InputLabel>
@@ -126,7 +128,7 @@ export default function ProductFilters({
         </Grid>
 
         {/* clear filter */}
-        <Grid item xs={12} md={6} lg={1}>
+        <Grid item xs={12} md={6} lg={2}>
           <Button variant="outlined" color="primary" fullWidth onClick={handleClearFilter}>
             Clear Filter
           </Button>
