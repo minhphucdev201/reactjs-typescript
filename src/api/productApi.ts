@@ -31,7 +31,7 @@ const productApi = {
     const url = '/products';
     return axiosClient.post(url, data);
   },
-  update(data: Product): Promise<Product> {
+  update(data: Partial<Product>): Promise<Product> {
     const url = `/products/${data.id}`;
     return axiosClient.put(url, data);
   },

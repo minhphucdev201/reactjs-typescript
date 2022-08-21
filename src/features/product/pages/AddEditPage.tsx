@@ -3,10 +3,12 @@ import { ChevronLeft } from '@material-ui/icons';
 import productApi from 'api/productApi';
 import { Product } from 'models';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import ProductForm from '../components/ProductForm';
 
 export default function AddEditPage() {
+  const history = useHistory();
   const { ProductId } = useParams<{ ProductId: string }>();
 
   const isEdit = Boolean(ProductId);
@@ -32,7 +34,17 @@ export default function AddEditPage() {
     ...product,
   } as Product;
 
-  const handleProductFormSubmit = (formValues: Product) => {};
+  const handleProductFormSubmit = async (formValues: Product) => {
+    if (isEdit) {
+      await productApi.update(formValues);
+      toast.success('Cập nhật sản phẩm thành công', { icon: true });
+    } else {
+      await productApi.add(formValues);
+      toast.success('Thêm sản phẩm thành công', { icon: true });
+    }
+    // throw new Error('My testing error');
+    history.push('/admin/products');
+  };
   return (
     <Box>
       <Link to="/admin/products">
