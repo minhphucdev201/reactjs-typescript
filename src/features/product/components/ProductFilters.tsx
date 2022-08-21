@@ -7,14 +7,16 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
+  Tab,
+  Tabs,
 } from '@material-ui/core';
 import { Category, ListParams } from 'models';
 import { ChangeEvent } from 'react';
-
+import PropTypes from 'prop-types';
 export interface ProductFiltersProps {
   filter: ListParams;
   categoryList: Category[];
-
+  // activeIndex: PropTypes.number.isRequired;
   onChange?: (newFilter: ListParams) => void;
   onSearchChange?: (newFilter: ListParams) => void;
 }
@@ -43,17 +45,17 @@ export default function ProductFilters({
     };
     onChange(newFilter);
   };
-  // const handleSortChange = (e: ChangeEvent<{ name?: string; value: unknown }>) => {
-  //   if (!onChange) return;
-  //   const value = e.target.value;
-  //   const [_sort] = (value as string) ? 'ASC' : 'DESC';
-  //   const newFilter: ListParams = {
-  //     ...filter,
-  //     _sort: (_sort as '_sort:ASC') || '_sort:DESC' || undefined,
-  //   };
-  //   console.log(newFilter);
-  //   onChange(newFilter);
-  // };
+  const handleSortChange = (e: ChangeEvent<{ name?: string; value: unknown }>) => {
+    if (!onChange) return;
+    const value = e.target.value;
+
+    const newFilter: ListParams = {
+      ...filter,
+      _sort: value,
+    };
+    console.log(newFilter);
+    onChange(newFilter);
+  };
   return (
     <Box>
       <Grid container spacing={3}>
@@ -87,23 +89,20 @@ export default function ProductFilters({
         </Grid>
 
         {/*  filter by sort  */}
-        {/* <Grid item xs={12} md={6} lg={2}>
+        <Grid item xs={12} md={6} lg={2}>
           <FormControl fullWidth variant="outlined" size="small">
-            <InputLabel id="sortBy">Sort By </InputLabel>
+            <InputLabel id="sortBy">Lọc theo </InputLabel>
             <Select
               labelId="sortBy"
-              // label="Sort By "
-              value={filter._sort ? `${filter._sort}.${}` : ''}
+              label="Lọc theo "
+              value={filter._sort ? `${filter._sort}:` : undefined}
               onChange={handleSortChange}
             >
-              <MenuItem value="">
-                <em>Giá</em>
-              </MenuItem>
               <MenuItem value="price:ASC">Giá: Giá thấp đến cao</MenuItem>
               <MenuItem value="price:DESC">Giá: Giá cao đến thấp</MenuItem>
             </Select>
           </FormControl>
-        </Grid> */}
+        </Grid>
       </Grid>
     </Box>
   );
