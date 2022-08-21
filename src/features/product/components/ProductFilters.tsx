@@ -1,18 +1,15 @@
 import {
   Box,
+  Button,
   FormControl,
-  FormHelperText,
   Grid,
   InputLabel,
   MenuItem,
   OutlinedInput,
   Select,
-  Tab,
-  Tabs,
 } from '@material-ui/core';
 import { Category, ListParams } from 'models';
-import { ChangeEvent } from 'react';
-import PropTypes from 'prop-types';
+import React, { ChangeEvent, useRef } from 'react';
 export interface ProductFiltersProps {
   filter: ListParams;
   categoryList: Category[];
@@ -27,6 +24,7 @@ export default function ProductFilters({
   onChange,
   onSearchChange,
 }: ProductFiltersProps) {
+  const searchRef = useRef<HTMLInputElement>();
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!onSearchChange) return;
     const newFilter: ListParams = {
@@ -36,6 +34,7 @@ export default function ProductFilters({
     };
     onSearchChange(newFilter);
   };
+
   const handleCategoryChange = (e: ChangeEvent<{ name?: string; value: unknown }>) => {
     if (!onChange) return;
     const newFilter: ListParams = {
@@ -45,6 +44,7 @@ export default function ProductFilters({
     };
     onChange(newFilter);
   };
+
   const handleSortChange = (e: ChangeEvent<{ name?: string; value: unknown }>) => {
     if (!onChange) return;
     const value = e.target.value;
@@ -56,6 +56,22 @@ export default function ProductFilters({
     console.log(newFilter);
     onChange(newFilter);
   };
+
+  const handleClearFilter = () => {
+    if (!onChange) return;
+    const newFilter: ListParams = {
+      ...filter,
+      _page: 1,
+      _limit: 3,
+      _sort: undefined,
+      name_containss: undefined,
+      danhmuc_eq: undefined,
+    };
+    onChange(newFilter);
+    if (searchRef.current) {
+      searchRef.current.value = '';
+    }
+  };
   return (
     <Box>
       <Grid container spacing={3}>
@@ -63,18 +79,23 @@ export default function ProductFilters({
         <Grid item xs={12} md={6} lg={4} sm={3}>
           <FormControl fullWidth variant="outlined" size="small">
             <InputLabel htmlFor="searchByName">Search By Name</InputLabel>
-            <OutlinedInput id="searchByName" label="Search By Name" onChange={handleSearchChange} />
+            <OutlinedInput
+              id="searchByName"
+              label="Search By Name"
+              onChange={handleSearchChange}
+              inputRef={searchRef}
+            />
           </FormControl>
         </Grid>
 
         <Grid item xs={12} md={6} lg={3}>
           <FormControl variant="outlined" size="small" fullWidth>
-            <InputLabel id="filterByCategory">Filter By Category</InputLabel>
+            <InputLabel id="filterByCategory">Lọc theo danh mục</InputLabel>
             <Select
               labelId="filterByCategory"
-              value={filter.category}
+              value={filter.category || ''}
               onChange={handleCategoryChange}
-              label="Filter By Category"
+              label="Lọc theo danh mục"
             >
               <MenuItem value="">
                 <em>All</em>
@@ -95,13 +116,20 @@ export default function ProductFilters({
             <Select
               labelId="sortBy"
               label="Lọc theo "
-              value={filter._sort ? `${filter._sort}:` : undefined}
+              value={filter._sort ? `${filter._sort}:` : ''}
               onChange={handleSortChange}
             >
               <MenuItem value="price:ASC">Giá: Giá thấp đến cao</MenuItem>
               <MenuItem value="price:DESC">Giá: Giá cao đến thấp</MenuItem>
             </Select>
           </FormControl>
+        </Grid>
+
+        {/* clear filter */}
+        <Grid item xs={12} md={6} lg={1}>
+          <Button variant="outlined" color="primary" fullWidth onClick={handleClearFilter}>
+            Clear Filter
+          </Button>
         </Grid>
       </Grid>
     </Box>
