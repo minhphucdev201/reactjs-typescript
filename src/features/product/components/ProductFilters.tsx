@@ -43,17 +43,17 @@ export default function ProductFilters({
     };
     onChange(newFilter);
   };
-  //   const handleSortChange = (e: ChangeEvent<{ name?: string; value: unknown }>) => {
-  //     if (!onChange) return;
-  //     const value = e.target.value;
-  //     const [_sort] = (value as string) ? 'ASC' : 'DESC';
-  //     const newFilter: ListParams = {
-  //       ...filter,
-  //       _sort: (_sort as '_sort:ASC') || '_sort:DESC' || undefined,
-  //     };
-  //     console.log(newFilter);
-  //     onChange(newFilter);
+  // const handleSortChange = (e: ChangeEvent<{ name?: string; value: unknown }>) => {
+  //   if (!onChange) return;
+  //   const value = e.target.value;
+  //   const [_sort] = (value as string) ? 'ASC' : 'DESC';
+  //   const newFilter: ListParams = {
+  //     ...filter,
+  //     _sort: (_sort as '_sort:ASC') || '_sort:DESC' || undefined,
   //   };
+  //   console.log(newFilter);
+  //   onChange(newFilter);
+  // };
   return (
     <Box>
       <Grid container spacing={3}>
@@ -92,8 +92,8 @@ export default function ProductFilters({
             <InputLabel id="sortBy">Sort By </InputLabel>
             <Select
               labelId="sortBy"
-              label="Sort By "
-              value={filter._sort ? `${filter._sort}` : ''}
+              // label="Sort By "
+              value={filter._sort ? `${filter._sort}.${}` : ''}
               onChange={handleSortChange}
             >
               <MenuItem value="">
@@ -102,7 +102,6 @@ export default function ProductFilters({
               <MenuItem value="price:ASC">Giá: Giá thấp đến cao</MenuItem>
               <MenuItem value="price:DESC">Giá: Giá cao đến thấp</MenuItem>
             </Select>
-            <FormHelperText>With label + helper text</FormHelperText>
           </FormControl>
         </Grid> */}
       </Grid>
