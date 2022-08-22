@@ -78,7 +78,7 @@ export default function ProductFilters({
         {/* Search product name */}
         <Grid item xs={12} md={6} lg={4} sm={3}>
           <FormControl fullWidth variant="outlined" size="small">
-            <InputLabel htmlFor="searchByName">Search By Name</InputLabel>
+            <InputLabel htmlFor="searchByName">Tìm kiếm sản phẩm</InputLabel>
             <OutlinedInput
               id="searchByName"
               label="Search By Name"
@@ -130,7 +130,7 @@ export default function ProductFilters({
         {/* clear filter */}
         <Grid item xs={12} md={6} lg={2}>
           <Button variant="outlined" color="primary" fullWidth onClick={handleClearFilter}>
-            Clear Filter
+            Xóa bộ lọc
           </Button>
         </Grid>
       </Grid>

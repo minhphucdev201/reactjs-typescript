@@ -86,7 +86,7 @@ export default function ProductTable({
                     value={product.price}
                     displayType={'text'}
                     thousandSeparator={true}
-                    suffix={'$'}
+                    suffix={'đ'}
                   />
                 </TableCell>
                 <TableCell>

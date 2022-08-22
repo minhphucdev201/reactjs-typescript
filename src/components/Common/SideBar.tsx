@@ -42,7 +42,7 @@ export function SideBar() {
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
-          <ListItemText primary="DashBoard" />
+          <ListItemText primary="Trang chủ" />
         </ListItemButton>
       </NavLink>
       <NavLink to="/admin/category" className={classes.link}>
@@ -50,7 +50,7 @@ export function SideBar() {
           <ListItemIcon>
             <CategoryIcon />
           </ListItemIcon>
-          <ListItemText primary="Category" />
+          <ListItemText primary="Danh mục" />
         </ListItemButton>
       </NavLink>
       <NavLink to="/admin/products" className={classes.link}>
@@ -58,7 +58,7 @@ export function SideBar() {
           <ListItemIcon>
             <Inventory2Icon />
           </ListItemIcon>
-          <ListItemText primary="Product" />
+          <ListItemText primary="Sản phẩm" />
         </ListItemButton>
       </NavLink>
     </List>

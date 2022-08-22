@@ -7,6 +7,7 @@ import { selectCategoryOptions } from 'features/category/categorySlice';
 import { Product } from 'models';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import NumberFormat from 'react-number-format';
 import * as yup from 'yup';
 
 export interface ProductFormProps {
@@ -58,7 +59,7 @@ export default function ProductForm({ initialValues, onSubmit }: ProductFormProp
     <Box maxWidth={500}>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <InputField name="name" control={control} label="Tên sản phẩm" />
-        <InputField name="price" control={control} label="Giá sản phẩm" />
+        <InputField name="price" control={control} label="Giá sản phẩm"></InputField>
 
         <InputField name="picture.name" control={control} label="Hình ảnh"></InputField>
 
